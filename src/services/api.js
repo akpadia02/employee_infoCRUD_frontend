@@ -4,7 +4,7 @@
 import axios from "axios";
 
 const API = axios.create({
-  baseURL: "https://employee-infocrud-backend.onrender.com/",
+  baseURL: "https://employee-infocrud-backend.onrender.com/api",
 });
 
 // Add token to every request
