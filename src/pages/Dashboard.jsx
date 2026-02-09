@@ -27,6 +27,7 @@ function Dashboard() {
     designation: "",
     salary: "",
   });
+  const [selectedDept, setSelectedDept] = useState("All");
 
   // Protect Route
   useEffect(() => {
@@ -109,6 +110,15 @@ function Dashboard() {
       alert("Delete Failed");
     }
   };
+
+  // Derived: unique departments and displayed list
+  const departments = Array.from(
+    new Set(employees.map((e) => e.department).filter(Boolean))
+  );
+  const displayedEmployees =
+    selectedDept === "All"
+      ? employees
+      : employees.filter((e) => e.department === selectedDept);
 
   return (
     <div>
@@ -210,6 +220,22 @@ function Dashboard() {
         )}
 
         {/* Table */}
+        <div style={{ margin: "12px 0", display: "flex", gap: "12px", alignItems: "center" }}>
+          <label style={{ fontWeight: 600 }}>Filter Dept:</label>
+          <select
+            className="input"
+            value={selectedDept}
+            onChange={(e) => setSelectedDept(e.target.value)}
+            style={{ width: "200px" }}
+          >
+            <option value="All">All</option>
+            {departments.map((d) => (
+              <option key={d} value={d}>
+                {d}
+              </option>
+            ))}
+          </select>
+        </div>
         <div className="card table-card">
 
           <table>
@@ -227,7 +253,7 @@ function Dashboard() {
 
             <tbody>
 
-              {employees.length === 0 ? (
+              {displayedEmployees.length === 0 ? (
 
                 <tr>
                   <td colSpan="6" align="center">
@@ -237,7 +263,7 @@ function Dashboard() {
 
               ) : (
 
-                employees.map((emp) => (
+                displayedEmployees.map((emp) => (
 
                   <tr key={emp._id}>
 
