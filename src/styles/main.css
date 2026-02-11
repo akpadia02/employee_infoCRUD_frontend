@@ -155,3 +155,22 @@ tbody tr:hover {
   text-decoration: none;
   font-weight: 500;
 }
+
+/* ===========================
+   FORM ERROR STYLING
+=========================== */
+
+.input-error {
+  border: 2px solid #d93025 !important;
+  background: #fff5f5;
+}
+
+.error-text {
+  color: #d93025;
+  font-size: 13px;
+  margin-top: -10px;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
